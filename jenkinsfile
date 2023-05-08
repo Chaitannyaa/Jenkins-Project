@@ -1,35 +1,40 @@
 pipeline {
-    agent any
-    environment {
-        DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
-    }
+    agent prod
     stages {
         stage ("code"){
             steps {
                 git url: 'https://github.com/Chaitannyaa/Jenkins-Project.git', branch: 'production'
             }
         }
-        stage ("Build"){
+        stage ("Build docker images"){
             steps {
-                sh 'docker build -t chaitannyaa/multi_container_app:worker-${DOCKER_IMAGE_TAG} .'
-                sh 'docker build -t chaitannyaa/multi_container_app:result-${DOCKER_IMAGE_TAG} .'
-                sh 'docker build -t chaitannyaa/multi_container_app:vote-${DOCKER_IMAGE_TAG} .'
+                sh 'docker build -t chaitannyaa/multi_container_app:worker .'
+                sh 'docker build -t chaitannyaa/multi_container_app:result .'
+                sh 'docker build -t chaitannyaa/multi_container_app:vote .'
             }
         }
-        stage ("login and push image"){
+        stage("Deploy services"){
             steps {
-                echo 'Logging into docker and pushing an image on dockerhub'
+                 sh "docker-compose down && docker-compose up -d"
+            }
+        }        
+        stage ("Update docker images"){
+            steps {
+                echo 'Logging into DockerHub and pushing an image on DockerHub'
                 withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'password', usernameVariable: 'user')]) {
                     sh "docker login -u ${env.user} -p ${env.password}"
-                    sh "docker push chaitannyaa/multi_container_app:worker-${DOCKER_IMAGE_TAG}"
-                    sh "docker push chaitannyaa/multi_container_app:result-${DOCKER_IMAGE_TAG}"
-                    sh "docker push chaitannyaa/multi_container_app:vote-${DOCKER_IMAGE_TAG}"
+                    sh "docker push chaitannyaa/multi_container_app:worker"
+                    sh "docker push chaitannyaa/multi_container_app:result"
+                    sh "docker push chaitannyaa/multi_container_app:vote"
                 }
             }
         }
-        stage("Deploy"){
+        stage('Notify Management team') {
             steps {
-                 sh "docker-compose down && docker-compose up -d"
+                // Send a notification email to the team
+                mail to: 'chaitannyaagaikwad@gmail.com', 
+                     subject: 'Microservices are deployed successfully!', 
+                     body: 'The latest versions of the microservices has been deployed to the development environment.'
             }
         }
     }
