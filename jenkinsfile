@@ -32,10 +32,22 @@ pipeline {
         stage('Notify Management team') {
             steps {
                 // Send a notification email to the team
-                mail to: 'chaitannyaagaikwad@gmail.com', 
-                     subject: 'Microservices are deployed successfully!', 
-                     body: 'The latest versions of the microservices has been deployed to the development environment.'
+                echo "The latest versions of the microservices has been deployed to the production environment." | mail -s "Microservices are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com
             }
         }
+        stage("Clean-up"){
+            steps {
+                sh '''
+                set +e
+                docker rmi -f $(docker images -a -q)
+                if [ $? -eq 0 ]; then
+                    echo "All Docker images have been removed successfully."
+                else
+                    echo "Error: Could not remove all Docker images."
+                fi
+                set -e
+                '''
+            }
+        }        
     }
 }
