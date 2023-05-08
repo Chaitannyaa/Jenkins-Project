@@ -1,5 +1,7 @@
 pipeline {
-    agent prod
+    agent {
+        label 'prod'
+    }
     stages {
         stage ("code"){
             steps {
@@ -32,7 +34,7 @@ pipeline {
         stage('Notify Management team') {
             steps {
                 // Send a notification email to the team
-                echo "The latest versions of the microservices has been deployed to the production environment." | mail -s "Microservices are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com
+                sh 'echo "The latest versions of the microservices has been deployed to the production environment." | mail -s "Microservices are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com'
             }
         }
         stage("Clean-up"){
