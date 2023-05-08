@@ -1,4 +1,4 @@
-# Docker_Compose_Project
+# Jenkins_CICD_Pipeline_Project
 
 # This project deploys a multi-container application with the help of Docker-Compose.
 
