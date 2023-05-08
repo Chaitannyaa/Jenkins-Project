@@ -35,7 +35,7 @@ pipeline {
         stage('Notify Management team') {
             steps {
                 // Send a notification email to the team
-                echo "The latest versions of the microservices has been deployed to the development environment." | mail -s "Microservices are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com
+                echo "The latest versions of the microservices has been deployed to the development environment." | mail -s \"Microservices are deployed successfully!\" -a \"From: DevOps-Chaitannyaa Gaikwad <chaitannyaagaikwad@gmail.com>\" chaitannyaagaikwad@gmail.com
             }
         }
         stage("Clean-up"){
