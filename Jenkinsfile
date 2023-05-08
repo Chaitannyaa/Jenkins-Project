@@ -10,9 +10,9 @@ pipeline {
         }
         stage ("Build docker images"){
             steps {
-                sh 'docker build -t chaitannyaa/multi_container_app:worker .'
-                sh 'docker build -t chaitannyaa/multi_container_app:result .'
-                sh 'docker build -t chaitannyaa/multi_container_app:vote .'
+                sh 'docker build -t chaitannyaa/multi_container_app:worker ./worker'
+                sh 'docker build -t chaitannyaa/multi_container_app:result ./result'
+                sh 'docker build -t chaitannyaa/multi_container_app:vote ./vote'
             }
         }
         stage("Deploy services"){
