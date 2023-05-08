@@ -34,7 +34,7 @@ services:
 
 
   vote:
-    build: ./vote
+    image: chaitannyaa/multi_container_app:vote
     container_name: vote
     environment:
       REDIS_HOST: redis
@@ -47,7 +47,7 @@ services:
 
 
   worker:
-    build: ./worker
+    image: chaitannyaa/multi_container_app:worker
     container_name: worker
     environment:
       REDIS_HOST: redis
@@ -65,7 +65,7 @@ services:
 
 
   result:
-    build: ./result
+    image: chaitannyaa/multi_container_app:result
     container_name: result
     environment:
       POSTGRES_HOST: postgresdb
