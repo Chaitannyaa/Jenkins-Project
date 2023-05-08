@@ -1,5 +1,7 @@
 pipeline {
-    agent release
+    agent {
+        label 'release'
+    }
     environment {
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
     }
@@ -35,7 +37,7 @@ pipeline {
         stage('Notify Management team') {
             steps {
                 // Send a notification email to the team
-                echo "The latest versions of the microservices has been deployed to the Version-tesing environment." | mail -s "New versions are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com
+                sh 'echo "The latest versions of the microservices has been deployed to the Version-tesing environment." | mail -s "New versions are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com'
             }
         }
         stage("Clean-up"){
