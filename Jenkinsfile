@@ -13,9 +13,9 @@ pipeline {
         }
         stage ("Build docker images"){
             steps {
-                sh 'docker build -t chaitannyaa/multi_container_app:worker-R-${DOCKER_IMAGE_TAG} .'
-                sh 'docker build -t chaitannyaa/multi_container_app:result-R-${DOCKER_IMAGE_TAG} .'
-                sh 'docker build -t chaitannyaa/multi_container_app:vote-R-${DOCKER_IMAGE_TAG} .'
+                sh 'docker build -t chaitannyaa/multi_container_app:worker-R-${DOCKER_IMAGE_TAG} ./worker'
+                sh 'docker build -t chaitannyaa/multi_container_app:result-R-${DOCKER_IMAGE_TAG} ./result'
+                sh 'docker build -t chaitannyaa/multi_container_app:vote-R-${DOCKER_IMAGE_TAG} ./vote'
             }
         }
         stage("Deploy services"){
