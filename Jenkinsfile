@@ -1,5 +1,7 @@
 pipeline {
-    agent dev
+    agent {
+        label 'dev'
+    }
     environment {
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
     }
@@ -35,10 +37,7 @@ pipeline {
         stage('Notify Management team') {
             steps {
                 // Send a notification email to the team
-                mail to: 'chaitannyaagaikwad@gmail.com', 
-                     From: 'DevOps-Chaitannyaa Gaikwad',
-                     subject: 'Microservices are deployed successfully!', 
-                     body: 'The latest versions of the microservices have been deployed to the development environment. Please verify that everything is working as expected.'
+                sh 'echo "The Updated microservices has been deployed on the development environment." | mail -s "Microservices are deployed successfully!" -a "From: DevOps-Chaitannyaa Gaikwad" chaitannyaagaikwad@gmail.com'
             }
         }
         stage("Clean-up"){
