@@ -14,9 +14,9 @@ By setting up this pipeline, we aim to streamline the deployment process of our 
 
 ## Pre-requisites
 
-A GitHub account to store the source code.
+- A GitHub account to store the source code.
 
-Three servers/machines :
+- Three servers/machines :
 
 a) Jenkins Master Node
 
@@ -24,11 +24,11 @@ b) Jenkins Agent Node-1 [For development/testing environment]
 
 c) Jenkins Agent Node-2 [For production environment]
 
-Jenkins, Docker and Docker Compose are installed.
+- Jenkins, Docker and Docker Compose are installed.
 
-Docker registry to store the Docker-versioned images.
+- Docker registry to store the Docker-versioned images.
 
-Knowledge of Groovy syntax to create the Jenkins pipelines.
+- Knowledge of Groovy syntax to create the Jenkins pipelines.
 
 # Contributions
 
