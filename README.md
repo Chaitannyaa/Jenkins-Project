@@ -1,30 +1,34 @@
-# Jenkins_CICD_Pipeline_Project
+# Jenkins_CICD_Declarative_Pipeline_Project
 
-# This project deploys a multi-container application with the help of Docker-Compose.
+![qwdqwewfwef](https://github.com/Chaitannyaa/Jenkins-Project/assets/117350787/318e7ed9-c8fe-4c05-becb-ed526b78f5c0)
 
-![Capture](https://user-images.githubusercontent.com/117350787/225546388-0df65232-ff89-4c6a-bdb8-13954857d652.PNG)
+## Project Overview
 
-# Pre-requisites:
+Our project is a microservice-based web application that consists of five different services: Redis, Postgres DB, Vote App, Worker App, and Result App. The purpose of the application is to allow users to vote for their preferred option and display the results of the poll in real time.
 
-- Docker and Docker compose installed
-- Knowledge of docker-compose and YAML
-- Basic understanding of Python and Javascript languages
+To automate the deployment process of this application, we have set up a CI/CD pipeline using Jenkins. The pipeline consists of several stages, including code checkout, building Docker images, deploying services to different servers using Docker Compose, updating the Docker registry, sending notification emails to the concerned person, and performing cleanup tasks on the hosting server.
 
-# Project Overview:
+![image](https://github.com/Chaitannyaa/Jenkins-Project/assets/117350787/f2954f01-d5e4-4b43-8bc5-26d0c671d0a3)
 
-This project is a web application designed to create a poll for the Popular Container Orchestration Tool using the Vote app [Python-based]. The application collects user choices and stores them on a Redis server. A Worker app [Python-based] then collects the data from the Redis server, processes the data to create poll results, and stores the result data in a Postgres database server. Finally, the Result app [NodeJs] retrieves data from the Postgres server and displays the poll results. This application provides an interface to conduct polls, and with the help of Docker Compose, it deploys multiple containerized services, making it a scalable and efficient solution for conducting polls.
+By setting up this pipeline, we aim to streamline the deployment process of our microservice application and ensure that each new change to the codebase is automatically deployed to the production/ testing/ development environment. This approach will save us time and effort while ensuring the reliability and scalability of our application.
 
-# The application consists of the following services:
+## Pre-requisites
 
-- Redis: a container running the Redis key-value store on port 6379, with a healthcheck that pings the Redis server.
-- PostgresDB: a container running a Postgres database on port 5432, with a healthcheck that checks the readiness of the database server.
-- Vote: a container running a voting application on port 8501 that communicates with Redis for storing vote data.
-- Worker: a container running a worker process that communicates with Redis for processing vote data and with Postgres for storing the processed data.
-- Result: a container running a result application on port 80 that communicates with Postgres for retrieving the processed data.
+A GitHub account to store the source code.
 
-![vsdve](https://user-images.githubusercontent.com/117350787/234478665-0df8db8a-8793-4e8c-9596-a9e2d723ae4d.JPG)
+Three servers/machines :
 
-All the containers are connected to a network named "mynetwork" using the bridge driver. The services have dependencies on each other, specified using the "depends_on" keyword, which ensures that the necessary containers are started in the correct order. Additionally, each service has a healthcheck that monitors the container's status and helps ensure that the application is running correctly.
+a) Jenkins Master Node
+
+b) Jenkins Agent Node-1 [For development/testing environment]
+
+c) Jenkins Agent Node-2 [For production environment]
+
+Jenkins, Docker and Docker Compose are installed.
+
+Docker registry to store the Docker-versioned images.
+
+Knowledge of Groovy syntax to create the Jenkins pipelines.
 
 # Contributions
 
@@ -39,4 +43,4 @@ Use clear, concise and easy-to-read code.
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Chaitannyaa/Docker-Compose-Project/blob/e2b1533cb6dbfa0dad10eeaeccd51015e18afbd0/LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Chaitannyaa/Jenkins-Project/blob/production/LICENSE.md) file for details.
