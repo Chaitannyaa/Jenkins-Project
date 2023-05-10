@@ -1,5 +1,7 @@
 # Jenkins_CICD_Declarative_Pipeline_Project
 
+## [Do follow steps from my blog article](https://chaitannyaa.hashnode.dev/from-code-to-deployment-using-cicd-pipeline-my-jenkins-project)
+
 ![qwdqwewfwef](https://github.com/Chaitannyaa/Jenkins-Project/assets/117350787/318e7ed9-c8fe-4c05-becb-ed526b78f5c0)
 
 ## Project Overview
